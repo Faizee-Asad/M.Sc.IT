@@ -1,0 +1,287 @@
+Practical 2 - matrix operation
+import numpy as np 
+#create 2 vectors (1d vector) 
+v1 = np.array([2,3,4])
+v2 = np.array([1,0,-1])
+#Calculate dot product
+d1 = np.dot (v1, v2)
+print(d1) # this is a scalar value
+# Perform vector addition
+a1 = v1+v2 #adding 2 vectors
+print(a1) 
+# Perform vector subtraction
+s1 = v1-v2 #substracting 2 vectors
+print(s1) 
+#2x2 matrix
+m1 = np.array([[1,2],[3,4]])
+m2 = np.array([[5,6],[7,8]])
+print("m1: ",m1)
+print("-------------")
+print("m2: ",m2) 
+# dot of 2x2
+d2 = np.dot(m1,m2)
+print(d2)
+# transpose of 2x2 metrix m1
+t = m1.T
+print(t) 
+# determine of metrix m1
+z1 = np.linalg.det(m1)
+print(d1) z2 = np.linalg.inv(m1)
+print(z2) 
+
+Practical 3 - probability distributions
+import numpy as np 
+import matplotlib.pyplot as plt 
+# Set a random number for reproduction 
+np.random.seed(0) 
+# Generate a random sample from a normal distribution 
+mean = 0 
+std_dev = 1 
+num_sample = 100 
+normal_sample = np.random.normal(mean,std_dev,num_sample) 
+print(normal_sample) 
+# Generate a random sample from a uniform distribution 
+low = 0 
+heigh = 1 
+#taking the previous vriable(num_sample) 
+uniform_sample = np.random.uniform(low,heigh,num_sample) 
+print(uniform_sample) 
+# ploting normal sample 
+# Create a figure with 1 row and 2 columns of subplots 
+fig, axes = plt.subplots(1,2,figsize=(12,5)) 
+# Now you can use 'axes' to plot on each subplot
+axes[0].hist(normal_sample,bins=20,color="red",alpha=0.6)
+axes[0].set_title("Normal Distribution")
+for ax in axes:
+ax.set_xlabel('Value')
+ax.set_ylabel('Frequency')
+plt.show() 
+# ploting uniform sample
+# Create a figure with 1 row and 2 columns of subplots
+fig, axes = plt.subplots(1,2,figsize=(12,5))
+# Now you can use 'axes' to plot on each subplot
+axes[0].hist(uniform_sample,bins=20,color="red",alpha=0.6)
+axes[0].set_title("Uniform Distribution")
+for ax in axes:
+ax.set_xlabel('Value')
+ax.set_ylabel('Frequency')
+plt.show()
+
+Practical 4 - mean median mode
+# way 1 to find mean
+data = [1,2,3,4,5] # this will create a tuple
+m1 = sum(data)/len(data)
+print(m1)
+# way 2 to find mean
+import numpy as np
+data = np.array([1,2,3,4,5])
+# this will create a array
+m1 = np.mean(data)
+print(m1)
+# finding mean with statistics
+import statistics as st
+data = [1,2,3,4,5]
+m1 = st.mean(data)
+print(m1)
+# finding median with statistics
+import statistics as st
+data = [1,2,3,4,5] # odd data set
+m2 = st.median(data)
+print(m2) 
+# finding median with statistics
+import statistics as st
+data = [1,2,3,4,5,6] # even data set
+m2 = st.median(data)
+print(m2)
+# finding median with numpy
+import numpy as np
+data = np.array([1,2,3,4,5]) # odd data set
+m2 = np.median(data)
+print(m2) 
+import statistics as st
+data = [1,2,2,3,3,3,4,4,4,4]
+m3 = st.mode(data)
+print(m3)
+#To calculate mean, median, mode of the sample data in python
+import pandas as pd
+data = pd.read_csv('Employee.csv')
+print(data) 
+# Calculate mean
+print(data.mean()) 
+# Calculate median
+print(data.median())
+# Calculate mode
+print(data.mode()) 
+# Calculate variance
+import pandas as pd
+data = pd.read_csv('Employee.csv')
+print(data.var()) 
+# Calculate standard deviation
+import pandas as pd
+data = pd.read_csv('Employee.csv')
+print(data.std()) 
+# Calculate range
+import numpy as np
+#sample data
+data1 = np.array([10,12,15,18,20])
+data2 = np.array([5,8,9,12,14])
+# measure of dispersion
+range_data1 = np.ptp(data1)
+range_data2 = np.ptp(data2)
+print("Range of data 1 : ",range_data1)
+print("Range of data 2 : ",range_data2) 
+# Calculate standard deviation
+import numpy as np
+#sample data
+data1 = np.array([10,12,15,18,20])
+data2 = np.array([5,8,9,12,14])
+std_data1 = np.std(data1)
+std_data2 = np.std(data2)
+print("Standard Divation of data 1 : ",std_data1)
+print("Standard Divation of data 2 : ",std_data2) 
+# Calculate variance
+import numpy as np
+#sample data
+data1 = np.array([10,12,15,18,20])
+data2 = np.array([5,8,9,12,14])
+var_data1 = np.var(data1)
+var_data2 = np.var(data2)
+print("Variance of data 1 : ",var_data1)
+print("Variance of data 2 : ",var_data2) 
+# Calculate Covariance
+import numpy as np
+#sample data
+data1 = np.array([10,12,15,18,20])
+data2 = np.array([5,8,9,12,14])
+cov_data1AndData2 = np.cov(data1,data2)[0,1]
+print("Covarience of data 1 and data 2 : ",cov_data1AndData2) 
+# Calculate Covariance
+import numpy as np
+#sample data
+d1 = np.array([data1,data2])
+d2 = np.cov(d1)
+print(d2) 
+
+Practical 5 - missing values and outliers. Clean the data
+
+# Performing Data cleaning and Data Manipulation
+import pandas as pd
+data = pd.read_csv("/content/practical5_Employee_DTL.csv")
+# unclean data
+print(data)
+# finding the null value
+data.isnull()
+# Data cleaning
+# Handling the null values
+data['JoinDate'].fillna('Unknown',inplace=True) # replacing null value with Unknown
+data.dropna(inplace=True) # removing the remaining null value
+data.isnull() # verifing
+# Data Manipulation
+# Manipulating the data
+# Creating new column with the help of concatination
+data['FullName'] = data['FirstName'] + ' ' + data['LastName']
+# Clean and manipulated data
+print(data)
+
+Practical 6 - Hypothesis Testing 
+
+import numpy as np 
+import matplotlib.pyplot as plt 
+from statistics import mean,median,mode 
+#Creating a data set 
+exam_score = [35,28,32,45,20,18,42,18,26,22] 
+#calculate mean, median, mode
+print("Mean: ",mean(exam_score)) 
+print("Mean: ",median(exam_score)) 
+print("Mean: ",mode(exam_score))
+# Univariate 
+plt.hist(exam_score, bins=10, edgecolor='k', alpha=0.6) 
+plt.xlabel('Exam_score') 
+plt.ylabel('Frequency')
+plt.title('Histogram of exam score')
+plt.show()
+#Bivariate 
+import pandas as pd 
+#creating a bivariate 
+data =pd.DataFrame({"Height":[165,170,175,180,180],"Weight":[60,65,70,75,65]}) 
+#print the data set 
+print(data)
+plt.scatter(data["Height"],data["Weight"]) 
+#Add label to the axis 
+plt.xlabel("Height") 
+plt.ylabel("Weight") 
+plt.show()
+import seaborn as sb 
+data = pd.read_csv("/content/Iris.csv"); 
+data.head()
+#display univariate using histogram 
+sb.set(style="whitegrid") 
+plt.figure(figsize=(12,6))
+#sepal length 
+plt.subplot(2,2,1) 
+sb.histplot(data['SepalLengthCm'], kde=True, color='black' )
+plt.title('sepal length')
+#Histogram for categorical variable (true or false) 
+sb.histplot(x="SepalLengthCm",data = data, hue=data['Species'])
+#Box plot for univariate 
+sb.boxplot(data["SepalLengthCm"],color='skyblue')
+plt.show() 
+data["SepalLengthCm"].describe()
+#Count plot for univariate 
+sb.countplot(x="Species",data = data, color='skyblue')
+#Bar plot for bivariate 
+sb.barplot(x="Species",y="SepalLengthCm",data=data, color="lightgreen") 
+plt.show()
+
+Practical 8 - Correlation and Regression Analysis 
+
+import pandas as pd
+import numpy as np
+from scipy import stats
+data = pd.read_csv('/content/partical7_stock.csv')
+data.head(12)
+# Select the variable
+x=data['tcs']
+y=data['wipro']
+print('X:\n',x)
+print('Y:\n',y)
+# Calculate the correlation coefficient
+c = stats.pearsonr(x,y)[0]
+print('C:\n',c)
+if c >0.7:
+  print('Strong Positive correlation')
+elif c>0.4:
+  print('Moderate Positive correlation')
+elif c>0:
+  print('Weak Positive correlation')
+elif c<0 and c>-0.4:
+  print('Weak Negetive correlation')
+elif c<-0.7:
+  print('Moderate Negative correlation')
+else:
+  print('No correlation')
+# Perform simple linear regression
+model = stats.linregress(x,y)
+# extract the regression coefficient
+s = model.slope
+i = model.intercept
+print("Slop\n", s)
+print('Intercept\n',i)
+y=s*x+i
+print('Y',y)
+
+Practical 7 - Machine Learning
+
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+data = pd.read_csv('/content/iris.csv')
+data.head()
+x=data[['sepal.length','sepal.width','petal.length','petal.width']]
+y=data[['variety']]
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.3)
+model=LogisticRegression()
+model.fit(x_train,y_train)
+model_pred = model.predict(x_test)
+accuracy_score(y_test,model_pred)
